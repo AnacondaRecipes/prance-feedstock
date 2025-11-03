@@ -5,6 +5,7 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
+
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/prance-{{ version }}.tar.gz
   sha256: 814a523bc1ff18383c12cb523ce44c90fe8792bf5f48d8cc33c9f658276658ed
