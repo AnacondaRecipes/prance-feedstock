@@ -48,5 +48,10 @@ about:
   license_file: LICENSE.txt
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/66289
+    recipe-maintainers:
+       - bkreider
+
   recipe-maintainers:
     - xhochy
