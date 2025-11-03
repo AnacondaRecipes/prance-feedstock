@@ -12,7 +12,7 @@ source:
 build:
   entry_points:
     - prance=prance.cli:cli
-  script: {{ PYTHON }} -m pip install . -vv --no-deps and --no-build-isolation
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   noarch: python
   skip: True # [not linux64]
