@@ -22,6 +22,7 @@ requirements:
     - pip
     - pytest-runner
     - python >=3.6
+    - wheel
   run:
     - packaging >=21.3,<22.dev0
     - chardet >=3.0,<5.0
@@ -54,6 +55,7 @@ about:
   dev_url: https://github.com/RonnyPfannschmidt/prance
   license: MIT
   license_file: LICENSE.txt
+  license_family: MIT
 
 extra:
   skip-lints:
