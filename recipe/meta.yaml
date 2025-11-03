@@ -12,9 +12,10 @@ source:
 build:
   entry_points:
     - prance=prance.cli:cli
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps and --no-build-isolation
   number: 0
+  noarch: python
+  skip: True # [not linux64]
 
 requirements:
   host:
@@ -44,10 +45,20 @@ test:
 about:
   home: https://github.com/jfinkhaeuser/prance
   summary: Resolving Swagger/OpenAPI 2.0 and 3.0.0 Parser
+  description: > 
+    Prance provides parsers for Swagger/OpenAPI 2.0 and 3.0 API specifications 
+    in Python. It uses openapi_spec_validator, swagger_spec_validator or flex 
+    to validate specifications, but additionally resolves JSON references in 
+    accordance with the OpenAPI spec.
+  doc_url: https://github.com/RonnyPfannschmidt/prance
+  dev_url: https://github.com/RonnyPfannschmidt/prance
   license: MIT
   license_file: LICENSE.txt
 
 extra:
+  skip-lints:
+    - host_section_needs_exact_pinnings
+    - avoid_noarch
   anaconda-services:
     ref: https://anaconda.zendesk.com/agent/tickets/66289
     recipe-maintainers:
