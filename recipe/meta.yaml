@@ -1,34 +1,35 @@
 {% set name = "prance" %}
-{% set version = "0.22.11.4.0" %}
+{% set version = "25.4.8.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
+
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/prance-{{ version }}.tar.gz
-  sha256: 814a523bc1ff18383c12cb523ce44c90fe8792bf5f48d8cc33c9f658276658ed
+  sha256: 2f72d2983d0474b6f53fd604eb21690c1ebdb00d79a6331b7ec95fb4f25a1f65
 
 build:
   entry_points:
     - prance=prance.cli:cli
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  noarch: python
+  skip: True # [not linux64]
 
 requirements:
   host:
     - pip
     - pytest-runner
-    - python >=3.6
+    - python >=3.10,<=3.13
+    - wheel
   run:
-    - packaging >=21.3,<22.dev0
-    - chardet >=3.0,<5.0
-    - python >=3.6
-    - ruamel.yaml >=0.17.10,<0.18.dev0
-    - requests >=2.25,<3.dev0
-    - semver >=2.13,<3.dev0
-    - six >=1.15,<2.dev0
+    - packaging >=24.2
+    - chardet >=5.2
+    - python >=3.10,<=3.13
+    - ruamel.yaml >=0.18.10
+    - requests >=2.32.3,<3.dev0
 
 test:
   imports:
@@ -44,9 +45,25 @@ test:
 about:
   home: https://github.com/jfinkhaeuser/prance
   summary: Resolving Swagger/OpenAPI 2.0 and 3.0.0 Parser
+  description: > 
+    Prance provides parsers for Swagger/OpenAPI 2.0 and 3.0 API specifications 
+    in Python. It uses openapi_spec_validator, swagger_spec_validator or flex 
+    to validate specifications, but additionally resolves JSON references in 
+    accordance with the OpenAPI spec.
+  doc_url: https://github.com/RonnyPfannschmidt/prance
+  dev_url: https://github.com/RonnyPfannschmidt/prance
   license: MIT
   license_file: LICENSE.txt
+  license_family: MIT
 
 extra:
+  skip-lints:
+    - host_section_needs_exact_pinnings
+    - avoid_noarch
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/66289
+    recipe-maintainers:
+       - bkreider
+
   recipe-maintainers:
     - xhochy
